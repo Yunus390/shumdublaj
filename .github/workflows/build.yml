@@ -15,7 +15,7 @@ jobs:
         with:
           gradle-version: 8.7
       - name: Unzip project
-        run: unzip -q "ShumDublaj .zip"
+        run: find . -maxdepth 1 -name '*.zip' -print0 | LC_ALL=C sort -z | xargs -0 -n1 unzip -oq
       - name: Accept licenses
         run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
       - name: Build debug APK
